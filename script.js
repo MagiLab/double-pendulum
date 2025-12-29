@@ -339,7 +339,7 @@ function drawPendulum() {
     ctx.fillStyle = isLightTheme ? "#008000" : "#0f0";
     ctx.fillRect(10, ctx.canvas.height - 30, 10, 10);
     ctx.fillStyle = isLightTheme ? "#000" : "#fff";
-    ctx.fillText("a₁a", 25, ctx.canvas.height - 20);
+    ctx.fillText("a₁", 25, ctx.canvas.height - 20);
     ctx.fillStyle = isLightTheme ? "#800080" : "#f0f";
     ctx.fillRect(60, ctx.canvas.height - 30, 10, 10);
     ctx.fillStyle = isLightTheme ? "#000" : "#fff";
