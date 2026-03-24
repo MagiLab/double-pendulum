@@ -8,9 +8,9 @@ Link to simulation:
 This project grew out of a desire to understand how deterministic systems generate chaotic outcomes. I derived the equations of motion from first principles using Lagrangian mechanics and implemented the numerical integration and rendering pipeline in WebGL to explore both the physics and computational aspects of nonlinear dynamics.
 
 ## Physics/Math
-This system consists of a planar double pendulum with two point masses $m_1$, $m_2$ attached by rigid rods of length $l_1$, $l_2$, moving under gravity with no damping forces present.
+This system consists of a planar double pendulum with two point masses $m_1$, $m_2$ attached by rigid, massless rods of length $l_1$, $l_2$, moving under gravity with no damping forces present. Below is a brief summary of the quantitative physics and math required for this simulation.
 
-We can then derive the following equations using trigonometry, where $\theta_1\$, $\theta_2\$ are the angles between the rods and vertical:
+We can thus derive the following equations using trigonometry, where $\theta_1\$, $\theta_2\$ are the angles between each rod and the y-axis:
 
 $x_1=l_1sin\Theta_1$
 
@@ -20,7 +20,7 @@ $x_2=l_1sin\Theta_1+l_2sin\Theta_2$
 
 $y_2=-l_1cos\Theta_1-l_2cos\Theta_2$
 
-These are the displacement equations for bobs (point masses) 1 & 2; the velocity equations are found by deriving each with respect to time. The velocity of each bob can thus be found using Pythagoras, and used to find the Lagrange via $L=T-V$ (Lagrange = Kinetic Energy - Potential Energy). We can then use the Euler-Lagrange equation:
+These are the displacement equations for bobs (point masses) 1 & 2; the velocity equations (for the x and y components of each bob's velocity) are hence found by deriving each with respect to time. The true velocity of each bob can thus be found using Pythagoras, and used to find the Lagrange via $L=T-V$ (Lagrange = Kinetic Energy - Potential Energy). We can then use the Euler-Lagrange equation:
 
 $\frac{d }{dt}(\frac{\partial L}{\partial \dot{x}_1})=\frac{\partial L}{\partial x_1}$
 
@@ -66,5 +66,5 @@ Throughout this project, I developed:
 - An appreciation for the complexity of chaotic systems
 - A deeper understanding of Lagrangian mechanics, an interesting contrast to traditional Newtonian mechanics
 - Practical experience with nonlinear ODE integration
-- Familiarity with the necessary infrastructure to render and optimise the results
+- Familiarity with the necessary infrastructure to render and optimise results
 - Debugging strategies when errors resulted in a lack of any energy conservation
