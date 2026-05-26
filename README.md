@@ -22,7 +22,7 @@ $y_2=-l_1cos\Theta_1-l_2cos\Theta_2$
 
 These are the displacement equations for bobs (point masses) 1 & 2; the velocity equations (for the x and y components of each bob's velocity) are hence found by deriving each with respect to time. The true velocity of each bob can thus be found using Pythagoras, and used to find the Lagrange via $L=T-V$ (Lagrange = Kinetic Energy - Potential Energy). We can then use the Euler-Lagrange equation:
 
-$\frac{d }{dt}(\frac{\partial L}{\partial \dot{x}_1})=\frac{\partial L}{\partial x_1}$
+$\frac{d }{dt}(\frac{\partial L}{\partial \dot{Theta}_i})=\frac{\partial L}{\partial Theta_i}$
 
 to find the equations of motion of the double pendulum by calculating the required derivatives. This yields the following two equations for $\theta_1\$ & $\theta_2\$ respectively:
 
