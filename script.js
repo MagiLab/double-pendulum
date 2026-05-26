@@ -13,6 +13,7 @@ let m1 = 1, m2 = 1;
 let l1 = 1.5, l2 = 1.5;
 let a1 = Math.PI / 2, a2 = Math.PI / 2;
 let da1 = 0, da2 = 0;
+let s = 0.9 / (l1 + l2);
 let tail = [];
 const maxTailLength = 500;
 
@@ -77,10 +78,12 @@ document.getElementById("m2").oninput = (e) => {
 };
 document.getElementById("l1").oninput = (e) => {
   l1 = parseFloat(e.target.value);
+  s = 0.9 / (l1 + l2);
   rescaleVelocities();
 };
 document.getElementById("l2").oninput = (e) => {
   l2 = parseFloat(e.target.value);
+  s = 0.9 / (l1 + l1);
   rescaleVelocities();
 };
 
@@ -130,16 +133,17 @@ canvas.addEventListener("mousedown", (e) => {
   const x = ((e.clientX - left) / width) * 2 - 1;
   const y = -(((e.clientY - top) / height) * 2 - 1);
   const points = [
-    { x: l1 * Math.sin(a1) * 0.3,            y: -l1 * Math.cos(a1) * 0.3,            id: "a1" },
-    { x: (l1 * Math.sin(a1) + l2 * Math.sin(a2)) * 0.3, 
-      y: (-l1 * Math.cos(a1) - l2 * Math.cos(a2)) * 0.3, id: "a2" }
+    { x: l1 * Math.sin(a1) * s,            y: -l1 * Math.cos(a1) * s,            id: "a1" },
+    { x: (l1 * Math.sin(a1) + l2 * Math.sin(a2)) * s, 
+      y: (-l1 * Math.cos(a1) - l2 * Math.cos(a2)) * s, id: "a2" }
   ];
-  points.forEach(p => {
+  for (const p of point) {
     const dist = Math.hypot(p.x - x, p.y - y);
     if (dist < 0.05) {
       draggingBob = p.id;
+      break;
     }
-  });
+  };
 });
 
 canvas.addEventListener("mousemove", (e) => {
@@ -151,7 +155,9 @@ canvas.addEventListener("mousemove", (e) => {
   if (draggingBob === "a1") {
     a1 = angle;
   } else if (draggingBob === "a2") {
-    a2 = angle;
+    const b1x = l1 * Math.sin(a1) * s;
+    const by1 = -l1 * Math.cos(a1) * s;
+    a2 = Math.atan(x - b1x, -(y - b1y));
   }
   da1 = da2 = 0;
 });
@@ -215,6 +221,8 @@ function drawPendulum() {
   const x2 = x1 + l2 * Math.sin(a2);
   const y2 = y1 - l2 * Math.cos(a2);
 
+  const scale = s;
+
   if (document.getElementById("showTail").checked) {
     if (running) {
       tail.push(x2, y2);
@@ -226,7 +234,6 @@ function drawPendulum() {
     tail = [];
   }
 
-  const scale = 0.3;
   const points = [
     0, 0,
     x1 * scale, y1 * scale,
@@ -403,6 +410,18 @@ gl.clearColor(
   document.body.classList.contains("light") ? 1 : 0,
   1
 );
+
+function resizeCanvas() {
+  const simArea = document.getElementById("simArea");
+  const width = simArea.clientWidth;
+  const height = Math.round(width * 0.75);
+  canvas.width = width;
+  canvas.height = height;
+  gl.viewport(0, 0, width, height);
+}
+
+resizeCanvas();
+window.addEventListener("resize", resizeCanvas);
 
 let lastTime = 0;
 function loop(timestamp) {
