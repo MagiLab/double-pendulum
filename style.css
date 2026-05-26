@@ -19,7 +19,7 @@ body.light {
 
 #container {
   display: grid;
-  grid-template-columns: 20% auto 20%;
+  grid-template-columns: 20% 1fr 20%;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -88,6 +88,7 @@ body.light button:hover {
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 #phaseWrapper {
@@ -128,4 +129,10 @@ canvas {
 body.light #energyDisplay {
   background-color: rgba(255, 255, 255, 0.8);
   color: black;
+}
+
+canvas#glcanvas {
+  width: 100%;
+  height: auto;
+  display: block;
 }
