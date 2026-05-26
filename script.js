@@ -420,7 +420,9 @@ function resizeCanvas() {
   gl.viewport(0, 0, width, height);
 }
 
-resizeCanvas();
+window.addEventListener("load", () => {
+  setTimeout (resizeCanvas, 200);
+});
 window.addEventListener("resize", resizeCanvas);
 
 let lastTime = 0;
