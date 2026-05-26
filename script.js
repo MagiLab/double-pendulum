@@ -421,7 +421,13 @@ function resizeCanvas() {
 }
 
 window.addEventListener("load", () => {
-  setTimeout (resizeCanvas, 500);
+  const interval = setInterval(() => {
+    const width = document.getElementById("simArea").clientWidth;
+    if (width > 400) {
+      resizeCanvas();
+      clearInterval(interval);
+    }
+  }, 50);
 });
 window.addEventListener("resize", resizeCanvas);
 
