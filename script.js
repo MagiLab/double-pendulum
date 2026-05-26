@@ -421,7 +421,7 @@ function resizeCanvas() {
 }
 
 window.addEventListener("load", () => {
-  setTimeout (resizeCanvas, 200);
+  setTimeout (resizeCanvas, 500);
 });
 window.addEventListener("resize", resizeCanvas);
 
