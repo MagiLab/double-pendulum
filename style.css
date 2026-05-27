@@ -50,10 +50,15 @@ body.light {
   gap: 12px;
   align-items: center;
   width: 100%;
+  margin-top: 10px;
 }
 
 .sliders input[type="range"] {
   width: 90%;
+}
+
+#button-row-toggles {
+  margin-top: 10px;
 }
 
 label {
