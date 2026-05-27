@@ -402,8 +402,6 @@ function createProgram(vs, fs) {
   return program;
 }
 
-gl.clearColor(0, 0, 0, 1);
-
 gl.clearColor(
   document.body.classList.contains("light") ? 1 : 0,
   document.body.classList.contains("light") ? 1 : 0,
