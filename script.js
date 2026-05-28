@@ -83,7 +83,7 @@ document.getElementById("l1").oninput = (e) => {
 };
 document.getElementById("l2").oninput = (e) => {
   l2 = parseFloat(e.target.value);
-  s = 0.9 / (l1 + l1);
+  s = 0.9 / (l1 + l2);
   rescaleVelocities();
 };
 
@@ -137,7 +137,7 @@ canvas.addEventListener("mousedown", (e) => {
     { x: (l1 * Math.sin(a1) + l2 * Math.sin(a2)) * s, 
       y: (-l1 * Math.cos(a1) - l2 * Math.cos(a2)) * s, id: "a2" }
   ];
-  for (const p of point) {
+  for (const p of points) {
     const dist = Math.hypot(p.x - x, p.y - y);
     if (dist < 0.05) {
       draggingBob = p.id;
@@ -156,8 +156,8 @@ canvas.addEventListener("mousemove", (e) => {
     a1 = angle;
   } else if (draggingBob === "a2") {
     const b1x = l1 * Math.sin(a1) * s;
-    const by1 = -l1 * Math.cos(a1) * s;
-    a2 = Math.atan(x - b1x, -(y - b1y));
+    const b1y = -l1 * Math.cos(a1) * s;
+    a2 = Math.atan2(x - b1x, -(y - b1y));
   }
   da1 = da2 = 0;
 });
