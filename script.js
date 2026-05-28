@@ -297,8 +297,7 @@ function drawPendulum() {
            + 0.5 * m2 * ( (l1 * da1) ** 2 
                         + (l2 * da2) ** 2 
                         + 2 * l1 * l2 * da1 * da2 * Math.cos(a1 - a2) );
-  const PE = (m1 + m2) * g * l1 * (1 - Math.cos(a1)) 
-           + m2 * g * l2 * (1 - Math.cos(a2));
+  const PE = -(m1 + m2) * g * l1 * Math.cos(a1) - m2 * g * l2 * Math.cos(a2);
   const totalE = KE + PE;
 
   const energyDisplay = document.getElementById("energyDisplay");
