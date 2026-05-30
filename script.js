@@ -175,7 +175,8 @@ function rk4Step(dt) {
 }
 
 function singleRK4Step(dt) {
-  function derivs(a1, da1, a2, da2) {
+  function derivs(state) {
+    const [a1, da1, a2, da2] = state;
     const delta = a2 - a1;
     const den1 = (m1 + m2) * l1 - m2 * l1 * Math.cos(delta) ** 2;
     const den2 = (l2 / l1) * den1;
@@ -191,27 +192,17 @@ function singleRK4Step(dt) {
       - (m1 + m2) * l1 * da1 ** 2 * Math.sin(delta)
       - (m1 + m2) * g * Math.sin(a2)
     ) / den2;
-    return [ da1, dda1, da2, dda2 ];
+    return [da1, dda1, da2, dda2];
   }
 
-  const [k1_a1, k1_da1, k1_a2, k1_da2] = derivs(a1, da1, a2, da2);
-  const [k2_a1, k2_da1, k2_a2, k2_da2] = derivs(
-    a1 + 0.5 * dt * k1_a1,    da1 + 0.5 * dt * k1_da1,
-    a2 + 0.5 * dt * k1_a2,    da2 + 0.5 * dt * k1_da2
-  );
-  const [k3_a1, k3_da1, k3_a2, k3_da2] = derivs(
-    a1 + 0.5 * dt * k2_a1,    da1 + 0.5 * dt * k2_da1,
-    a2 + 0.5 * dt * k2_a2,    da2 + 0.5 * dt * k2_da2
-  );
-  const [k4_a1, k4_da1, k4_a2, k4_da2] = derivs(
-    a1 + dt * k3_a1,          da1 + dt * k3_da1,
-    a2 + dt * k3_a2,          da2 + dt * k3_da2
-  );
+  const state = [a1, da1, a2, da2];
+  const k1 = derivs(state);
+  const k2 = derivs(state.map((v, i) => v + 0.5 * dt * k1[i]));
+  const k3 = derivs(state.map((v, i) => v + 0.5 * dt * k2[i]));
+  const k4 = derivs(state.map((v, i) => v + dt * k3[i]));
 
-  a1  += (dt / 6) * (k1_a1  + 2 * k2_a1  + 2 * k3_a1  + k4_a1);
-  da1 += (dt / 6) * (k1_da1 + 2 * k2_da1 + 2 * k3_da1 + k4_da1);
-  a2  += (dt / 6) * (k1_a2  + 2 * k2_a2  + 2 * k3_a2  + k4_a2);
-  da2 += (dt / 6) * (k1_da2 + 2 * k2_da2 + 2 * k3_da2 + k4_da2);
+  [a1, da1, a2, da2] = state.map((v, i) => v + (dt / 6) * (k1[i] + 2 * k2[i] + 2 * k3[i] + k4[i])
+    );
 }
 
 
