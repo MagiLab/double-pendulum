@@ -242,41 +242,6 @@ function drawPendulum() {
   const rodColor = isLightTheme ? [0, 0, 0, 1] : [1, 1, 1, 1];
   drawLine(points, rodColor);
 
-  function drawCircle(cx, cy, r, color) {
-    const segments = 30;
-    const pts = [cx, cy];
-    for (let i = 0; i <= segments; i++) {
-      const theta = (i / segments) * 2 * Math.PI;
-      pts.push(cx + r * Math.cos(theta), cy + r * Math.sin(theta));
-    }
-    const buffer = gl.createBuffer();
-    gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pts), gl.STATIC_DRAW);
-    const vertSrc = `
-      attribute vec2 a;
-      void main() {
-        gl_Position = vec4(a, 0.0, 1.0);
-      }
-    `;
-    const fragSrc = `
-      precision mediump float;
-      uniform vec4 uColor;
-      void main() {
-        gl_FragColor = uColor;
-      }
-    `;
-    const vs = createShader(gl.VERTEX_SHADER, vertSrc);
-    const fs = createShader(gl.FRAGMENT_SHADER, fragSrc);
-    const program = createProgram(vs, fs);
-    gl.useProgram(program);
-    const posAttrib = gl.getAttribLocation(program, "a");
-    gl.enableVertexAttribArray(posAttrib);
-    gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
-    const colorUniform = gl.getUniformLocation(program, "uColor");
-    gl.uniform4fv(colorUniform, color);
-    gl.drawArrays(gl.TRIANGLE_FAN, 0, pts.length / 2);
-  }
-
   const bob1Color = isLightTheme ? [0, 0.5, 1, 1]
                                  : [0.2, 0.8, 1, 1];
   const bob2Color = isLightTheme ? [1, 0, 0.5, 1]
@@ -345,36 +310,25 @@ function drawPendulum() {
 }
 
 function drawLine(pointsArray, color) {
-  const buffer = gl.createBuffer();
   gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
-  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pointsArray), gl.STATIC_DRAW);
-
-  const vertSrc = `
-    attribute vec2 a;
-    void main() {
-      gl_Position = vec4(a, 0.0, 1.0);
-    }
-  `;
-  const fragSrc = `
-    precision mediump float;
-    uniform vec4 uColor;
-    void main() {
-      gl_FragColor = uColor;
-    }
-  `;
-  const vs = createShader(gl.VERTEX_SHADER, vertSrc);
-  const fs = createShader(gl.FRAGMENT_SHADER, fragSrc);
-  const program = createProgram(vs, fs);
-  gl.useProgram(program);
-
-  const posAttrib = gl.getAttribLocation(program, "a");
-  gl.enableVertexAttribArray(posAttrib);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pointsArray), gl.DYNAMIC_DRAW);
   gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
-
-  const colorUniform = gl.getUniformLocation(program, "uColor");
   gl.uniform4fv(colorUniform, color);
-
   gl.drawArrays(gl.LINE_STRIP, 0, pointsArray.length / 2);
+}
+
+function drawCircle(cx, cy, r, color) {
+  const segments = 30;
+  const pts = [cx, cy];
+  for (let i = 0; i <= segments; i++) {
+    const theta = (i / segments) * 2 * Math.PI;
+    pts.push(cx + r * Math.cos(theta), cy + r * Math.sin(theta));
+  }
+  gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
+  gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(pts), gl.DYNAMIC_DRAW);
+  gl.vertexAttribPointer(posAttrib, 2, gl.FLOAT, false, 0, 0);
+  gl.uniform4fv(colorUniform, color);
+  gl.drawArrays(gl.TRIANGLE_FAN, 0, pts.length / 2);
 }
 
 function createShader(type, source) {
@@ -404,6 +358,28 @@ gl.clearColor(
   document.body.classList.contains("light") ? 1 : 0,
   1
 );
+
+const vertSrc = `
+attribute vec2 a;
+void main() {
+  gl_Position = vec4(a, 0.0, 1.0);
+}
+`;
+const fragSrc = `
+precision mediump float;
+uniform vec4 uColor;
+void main() {
+  gl_FragColor = uColor;
+}
+`;
+const vs = createShader(gl.VERTEX_SHADER, vertSrc);
+const fs = createShader(gl.FRAGMENT_SHADER, fragSrc);
+const program = createProgram(vs, fs);
+gl.useProgram(program);
+const posAttrib = gl.getAttribLocation(program, "a");
+gl.enableVertexAttribArray(posAttrib);
+const colorUniform = gl.getUniformLocation(program, "uColor");
+const buffer = gl.createBuffer();
 
 function resizeCanvas() {
   const simArea = document.getElementById("simArea");
