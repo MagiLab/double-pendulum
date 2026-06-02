@@ -3,7 +3,7 @@
 A real-time, energy-conserving simulation of chaotic double pendulum dynamics using fourth-order Runge–Kutta integration and GPU rendering.
 
 Link to simulation: 
-[magilab.github.io](https://magilab.github.io)
+[magilab.github.io/double-pendulum](https://magilab.github.io/double-pendulum)
 ## Personal Background
 This project grew out of a desire to understand how deterministic systems generate chaotic outcomes. I derived the equations of motion from first principles using Lagrangian mechanics and implemented the numerical integration and rendering pipeline in WebGL to explore both the physics and computational aspects of nonlinear dynamics.
 
