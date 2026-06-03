@@ -10,6 +10,8 @@ This project grew out of a desire to understand how deterministic systems genera
 ## Physics/Math
 This system consists of a planar double pendulum with two point masses $m_1$, $m_2$ attached by rigid, massless rods of length $l_1$, $l_2$, moving under gravity with no damping forces present. Below is a brief summary of the quantitative physics and math required for this simulation.
 
+Using the following diagram:
+![Double Pendulum Diagram](doublependulum.svg)
 We can thus derive the following equations using trigonometry, where $\theta_1\$, $\theta_2\$ are the angles between each rod and the y-axis:
 
 $x_1=l_1sin\Theta_1$
