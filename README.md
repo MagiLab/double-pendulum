@@ -1,6 +1,6 @@
 # Double Pendulum Simulation
 
-![simulation demo](DoublePendulumGIF.gif)
+<img src="DoublePendulum.gif" width="400">
 
 A real-time, energy-conserving simulation of chaotic double pendulum dynamics using fourth-order Runge–Kutta integration and GPU rendering.
 
