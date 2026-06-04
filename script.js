@@ -295,17 +295,17 @@ function drawPendulum() {
 
     ctx.fillStyle = isLightTheme ? "#000" : "#fff";
     ctx.font = "12px sans-serif";
-    ctx.fillText("a", ctx.canvas.width - 15, ctx.canvas.height / 2 - 5);
-    ctx.fillText("da/dt", ctx.canvas.width / 2 + 5, 15);
+    ctx.fillText("θ", ctx.canvas.width - 15, ctx.canvas.height / 2 - 5);
+    ctx.fillText("dθ/dt", ctx.canvas.width / 2 + 5, 15);
 
     ctx.fillStyle = isLightTheme ? "#008000" : "#0f0";
     ctx.fillRect(10, ctx.canvas.height - 30, 10, 10);
     ctx.fillStyle = isLightTheme ? "#000" : "#fff";
-    ctx.fillText("a₁", 25, ctx.canvas.height - 20);
+    ctx.fillText("θ₁", 25, ctx.canvas.height - 20);
     ctx.fillStyle = isLightTheme ? "#800080" : "#f0f";
     ctx.fillRect(60, ctx.canvas.height - 30, 10, 10);
     ctx.fillStyle = isLightTheme ? "#000" : "#fff";
-    ctx.fillText("a₂", 75, ctx.canvas.height - 20);
+    ctx.fillText("θ₂", 75, ctx.canvas.height - 20);
   }
 }
 
