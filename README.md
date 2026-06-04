@@ -17,23 +17,23 @@ Using the following diagram:
 ![Double Pendulum Diagram](DoublePendulum.svg)  
 We can thus derive the following equations using trigonometry, where $\theta_1\$, $\theta_2\$ are the angles between each rod and the y-axis:
 
-$x_1=l_1sin\Theta_1$
+$x_1=l_1sin\theta_1$
 
-$y_1=-l_1cos\Theta_1$
+$y_1=-l_1cos\theta_1$
 
-$x_2=l_1sin\Theta_1+l_2sin\Theta_2$
+$x_2=l_1sin\theta_1+l_2sin\theta_2$
 
-$y_2=-l_1cos\Theta_1-l_2cos\Theta_2$
+$y_2=-l_1cos\theta_1-l_2cos\theta_2$
 
 These are the displacement equations for bobs (point masses) 1 & 2; the velocity equations (for the x and y components of each bob's velocity) are hence found by deriving each with respect to time. The true velocity of each bob can thus be found using Pythagoras, and used to find the Lagrange via $L=T-V$ (Lagrange = Kinetic Energy - Potential Energy). We can then use the Euler-Lagrange equation:
 
-$\frac{d }{dt}(\frac{\partial L}{\partial \dot{\Theta}_i})=\frac{\partial L}{\partial \Theta_i}$
+$\frac{d }{dt}(\frac{\partial L}{\partial \dot{\theta}_i})=\frac{\partial L}{\partial \theta_i}$
 
 to find the equations of motion of the double pendulum by calculating the required derivatives. This yields the following two equations for $\theta_1\$ & $\theta_2\$ respectively:
 
-$l_1^2\ddot{\Theta}_1(m_1+m_2)+m_2l_1l_2\ddot{\Theta}_2cos(\Theta_1-\Theta_2)+m_2l_1l_2\dot{\Theta}_2^2sin(\Theta_1-\Theta_2)+gl_1sin\Theta_1(m_1+m_2)=0$
+$l_1^2\ddot{\theta}_1(m_1+m_2)+m_2l_1l_2\ddot{\theta}_2cos(\theta_1-\theta_2)+m_2l_1l_2\dot{\theta}_2^2sin(\theta_1-\theta_2)+gl_1sin\theta_1(m_1+m_2)=0$
 
-$m_2l_1l_2\ddot{\Theta}_1cos(\Theta_1-\Theta_2)-m_2l_1l_2\dot{\Theta}_1^2sin(\Theta_1-\Theta_2)+m_2l_2^2\ddot{\Theta}_2+m_2gl_2sin\Theta_2=0$
+$m_2l_1l_2\ddot{\theta}_1cos(\theta_1-\theta_2)-m_2l_1l_2\dot{\theta}_1^2sin(\theta_1-\theta_2)+m_2l_2^2\ddot{\theta}_2+m_2gl_2sin\theta_2=0$
 
 Now, for Runge-Kutta 4 numerical integration, the system is expressed in first-order form:
 
