@@ -25,7 +25,7 @@ $x_2=l_1sin\theta_1+l_2sin\theta_2$
 
 $y_2=-l_1cos\theta_1-l_2cos\theta_2$
 
-These are the displacement equations for bobs (point masses) 1 & 2; the velocity equations (for the x and y components of each bob's velocity) are hence found by deriving each with respect to time. The true velocity of each bob can thus be found using Pythagoras, and used to find the Lagrange via $L=T-V$ (Lagrange = Kinetic Energy - Potential Energy). We can then use the Euler-Lagrange equation:
+These are the displacement equations for bobs (point masses) 1 & 2; the velocity equations (for the x and y components of each bob's velocity) are hence found by deriving each with respect to time. The true velocity of each bob can thus be found using Pythagoras, and used to find the Lagrangian via $L=T-V$ (Lagrangian = Kinetic Energy - Potential Energy). We can then use the Euler-Lagrange equation:
 
 $\frac{d }{dt}(\frac{\partial L}{\partial \dot{\theta}_i})=\frac{\partial L}{\partial \theta_i}$
 
@@ -62,7 +62,7 @@ $$\omega'_2=\frac{-m_{2}l_{2}\omega_{2}^{2}sin\Delta cos\Delta+(m_{1}+m_{2})gsin
 - Drag bobs to set initial angles
 - Toggle real-time energy calculation and display
 - Toggle tail (bob 2 path tracer)
-- Toggle phase space visualisation ($\frac{da}{dt}$ vs $a$ for $\theta_1\$ & $\theta_2\$)
+- Toggle phase space visualisation ($\frac{d\theta}{dt}$ vs $\theta$ for $\theta_1\$ & $\theta_2\$)
 
 ## Numerical Accuracy & Stability
 - RK4 was chosen over Euler and symplectic Euler methods for improved long-term accuracy
@@ -72,7 +72,7 @@ $$\omega'_2=\frac{-m_{2}l_{2}\omega_{2}^{2}sin\Delta cos\Delta+(m_{1}+m_{2})gsin
 The simulation effectively reproduces key qualitative features of the double pendulum:
 - Regular, near-periodic motion at low energy states
 - Rapid divergence of trajectories from nearby initial conditions
-- Wholely chaotic motion at higher energy states
+- Wholly chaotic motion at higher energy states
 
 Small deviations in initial angles lead to notably divergent trajectories within seconds, illustrating the sensitive dependence on initial conditions
 
@@ -80,6 +80,6 @@ Small deviations in initial angles lead to notably divergent trajectories within
 Throughout this project, I developed:
 - An appreciation for the complexity of chaotic systems
 - A deeper understanding of Lagrangian mechanics, an interesting contrast to traditional Newtonian mechanics
-- Practical experience with nonlinear ODE integration
+- Practical experience with numerical nonlinear ODE integration using RK4
 - Familiarity with the necessary infrastructure to render and optimise results
-- Debugging strategies when errors resulted in a lack of any energy conservation
+- Debugging strategies when errors resulted in a lack of energy conservation
