@@ -45,6 +45,16 @@ $\omega_1\'=f_1(\theta_1\,\theta_2\,\omega_1\,\omega_2\)$
 
 $\omega_2\'=f_2(\theta_1\,\theta_2\,\omega_1\,\omega_2\)$
 
+Where $f_1$ & $f_2$ are found by solving the equations of motion simultaneously for $\ddot{\theta}_1$ and $\ddot{\theta}_2$.
+Expressing the system in matrix form $Ax=b$:
+
+$$\begin{bmatrix}(m_{1}+m_{2})l_{1}^{2} & m_{2}l_{1}l_{2}\cos\Delta \\\\ m_{2}l_{1}l_{2}\cos\Delta & m_{2}l_{2}^{2}\end{bmatrix}\begin{bmatrix}\omega'_{1} \\\\ \omega'_{2}\end{bmatrix}=\begin{bmatrix}m_{2}l_{1}l_{2}\omega_{2}^{2}\sin\Delta -(m_{1}+m_{2})gl_{1}\sin\theta_{1} \\\\ -m_{2}l_{1}l_{2}\omega_{1}^{2}\sin\Delta-m_{2}gl_{2}\sin\theta_2\end{bmatrix}$$
+
+Where $\Delta=\theta_2-\theta_1$. Multiplying $b$ by the inverse of $A$ gives the explicit expressions for $\omega_1$ & $\omega_2$ used for the RK4 integration:
+
+$$\omega'_1=\frac{m_{2}l_{1}\omega_{1}^{2}sin\Delta cos\Delta+m_2gsin\theta_2cos\Delta+m_{2}l_{2}\omega_{2}^{2}sin\Delta-(m_{1}+m_{2})gsin\theta_1}{(m_1+m_2)l_1-m_2l_1cos^{2}\Delta}$$
+$$\omega'_2=\frac{-m_{2}l_{2}\omega_{2}^{2}sin\Delta cos\Delta+(m_{1}+m_{2})gsin\theta_1cos\Delta-(m_1+m_2)l_{1}\omega_{1}^{2}sin\Delta-(m_1+m_2)gsin\theta_2}{(l_2/l_1)[l_1(m_1+m_2)-m_2l_1cos^{2}\Delta]}$$
+
 ## Features
 - Real-time RK4 integration of the aforementioned equations of motion
 - Adjustable parameters: Mass 1, Mass 2, Length 1, Length 2, Gravity
